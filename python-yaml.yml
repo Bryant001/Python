@@ -33,8 +33,12 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    pip install veracode-api-signing
-  displayName: 'Veracode'
+    export VERACODE_API_KEY_ID='$(API_ID)'
+    export VERACODE_API_KEY_SECRET='$(API_Key)'
+    python sbom.py
+  displayName:SBOM
+
+#  displayName: 'Veracode'
 #    pip install pytest pytest-azurepipelines
 #    pytest
 #  displayName: 'pytest'
