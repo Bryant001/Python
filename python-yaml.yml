@@ -39,6 +39,13 @@ steps:
     python sbom.py
   displayName: 'SBOM'
 
+- task: PublishBuildArtifacts@1
+  displayName: Create Build Artifact for Veracode Static Pipeline Scanner Results
+  inputs:
+    PathtoPublish: 'SBOM.json'
+    ArtifactName: 'SBOM'
+    publishLocation: 'Container'
+
 #  displayName: 'Veracode'
 #    pip install pytest pytest-azurepipelines
 #    pytest
