@@ -45,8 +45,3 @@ steps:
     PathtoPublish: 'SBOM.json'
     ArtifactName: 'SBOM'
     publishLocation: 'Container'
-
-#  displayName: 'Veracode'
-#    pip install pytest pytest-azurepipelines
-#    pytest
-#  displayName: 'pytest'
