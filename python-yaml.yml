@@ -34,7 +34,7 @@ steps:
 
 - script: |
     pip install veracode-api-signing
-    displayName: 'Veracode'
+  displayName: 'Veracode'
 #    pip install pytest pytest-azurepipelines
 #    pytest
 #  displayName: 'pytest'
