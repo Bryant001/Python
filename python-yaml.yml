@@ -18,3 +18,18 @@ steps:
     PathtoPublish: 'SBOM.json'
     ArtifactName: 'SBOM'
     publishLocation: 'Container'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+       $env:VERACODE_API_KEY_ID="$(VERACODE_API_KEY_ID)"
+       $env:VERACODE_API_KEY_SECRET="$(VERACODE_API_KEY_SECRET)"
+       echo "Installing API Libraries"
+       pip install veracode-api-signing
+       echo "Pulling Application GUID"
+       http --auth-type=veracode_hmac GET "https://api.veracode.com/appsec/v1/applications/?name=Verademo_dotnet" > applicationguid.txt
+       $applicationguid = Get-Content applicationguid.txt | findstr /r "guid" | %{ $_.Split('"')[3]; } | select -First 1
+       echo $applicationguid
+       echo "Generating the Software Bill of Materials (SBOM)"
+       http --auth-type=veracode_hmac GET "https://api.veracode.com/srcclr/sbom/v1/targets/$applicationguid/cyclonedx?type=application" | tee Verademo-dotnet_sbom.json
