@@ -23,8 +23,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-       $env:VERACODE_API_KEY_ID="$(VERACODE_API_KEY_ID)"
-       $env:VERACODE_API_KEY_SECRET="$(VERACODE_API_KEY_SECRET)"
+       $env:VERACODE_API_KEY_ID="$(API_ID)"
+       $env:VERACODE_API_KEY_SECRET="$(API_Key)"
        echo "Installing API Libraries"
        pip install veracode-api-signing
        echo "Pulling Application GUID"
