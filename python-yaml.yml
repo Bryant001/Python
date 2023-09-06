@@ -10,7 +10,7 @@ steps:
     export VERACODE_API_KEY_ID='$(API_ID)'
     export VERACODE_API_KEY_SECRET='$(API_Key)'
     python sbom.py
-    http --auth-type=veracode_hmac GET "https://api.veracode.com/appsec/v1/applications/?name=\"JustinDemo\""
+    http --auth-type=veracode_hmac GET "https://api.veracode.com/appsec/v1/applications/?name=\"JustinDemo\"" > payload.json
   displayName: 'SBOM'
 
 - task: PublishBuildArtifacts@1
