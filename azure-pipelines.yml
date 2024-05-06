@@ -1,0 +1,27 @@
+trigger:
+- manual
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: |
+    pip install veracode_api_signing requests
+    export VERACODE_API_KEY_ID='$(API_ID)'
+    export VERACODE_API_KEY_SECRET='$(API_Key)'
+    python sbom.py
+    http --auth-type=veracode_hmac GET "https://api.veracode.com/appsec/v1/applications/?name=\"JustinDemo\"" > payload.json
+  displayName: 'SBOM'
+
+- task: PublishBuildArtifacts@1
+  displayName: Create Build Artifact for Veracode Static Pipeline Scanner Results
+  inputs:
+    PathtoPublish: 'SBOM.json'
+    ArtifactName: 'SBOM'
+    publishLocation: 'Container'
+
+- task: PythonScript@0
+  displayName: Python Test
+  inputs:
+    scriptSource: 'inline'
+    script: 'print ("Hello World")'
