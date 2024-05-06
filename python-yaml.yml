@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  - group: credentials
+
 steps:
 - script: |
     pip install veracode_api_signing requests
