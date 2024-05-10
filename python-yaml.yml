@@ -22,9 +22,3 @@ steps:
     PathtoPublish: 'SBOM.json'
     ArtifactName: 'SBOM'
     publishLocation: 'Container'
-
-- task: PythonScript@0
-  displayName: Python Test
-  inputs:
-    scriptSource: 'inline'
-    script: 'print ("Hello World")'
