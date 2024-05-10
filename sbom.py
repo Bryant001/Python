@@ -7,7 +7,7 @@ from veracode_api_signing.plugin_requests import RequestsAuthPluginVeracodeHMAC
 api_base = "https://api.veracode.com/appsec/v1"
 sca_base = "https://api.veracode.com/srcclr"
 headers = {"User-Agent": "Python HMAC Example"}
-app_name = "verademo_dotnet"
+app_name = ""
 sbom_out = {}
 
 if __name__ == "__main__":
